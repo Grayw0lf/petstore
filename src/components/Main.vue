@@ -52,6 +52,7 @@
 
 <script>
 import MyHeader from './Header.vue';
+import {mapGetters} from 'vuex';
 export default {
   name: 'iMain',
   data() {
@@ -85,9 +86,9 @@ export default {
     }
   },
   computed: {
-    products() {
-      return this.$store.getters.products;
-    },
+    ...mapGetters([
+      "products",
+    ]),
     cartItemCount() {
       return this.cart.length || '';
     },
