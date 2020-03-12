@@ -56,7 +56,6 @@ export default {
   name: 'iMain',
   data() {
     return {
-      products: {},
       cart: []
     };
   },
@@ -86,6 +85,9 @@ export default {
     }
   },
   computed: {
+    products() {
+      return this.$store.getters.products;
+    },
     cartItemCount() {
       return this.cart.length || '';
     },
@@ -123,10 +125,7 @@ export default {
     }
   },
   created: function() {
-    axios.get('/static/products.json').then(response => {
-      this.products = response.data.products;
-      console.log(this.products);
-    });
+    this.$store.dispatch('initStore');
   }
 };
 </script>
